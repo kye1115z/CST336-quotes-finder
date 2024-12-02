@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("partials/head.ejs") %>
+  </head>
+  <body>
+    <div class="main-container" style="margin-left: 250px">
+      <%- include("partials/sidebar.ejs") %>
+      <!-- Page content -->
+      <div class="content">
+        <button class="home_btn" onclick="window.location.href='/allAuthors'">
+          All Authors
+        </button>
+        <button class="home_btn" onclick="window.location.href='/addAuthor'">
+          Add Author
+        </button>
+        <button class="home_btn" onclick="window.location.href='/searchQuotes'">
+          Search Quotes
+        </button>
+        <button class="home_btn" onclick="window.location.href='/allQuotes'">
+          All Quotes
+        </button>
+        <button class="home_btn" onclick="window.location.href='/addQuote'">
+          Add Quote
+        </button>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

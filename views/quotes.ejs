@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("partials/head.ejs") %>
+    <link href="/css/quotes.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="main-container">
+      <%- include("partials/sidebar.ejs") %>
+      <div class="quotes-layout">
+        <h1 class="title">Quotes</h1>
+        <div class="quotes-wrapper">
+          <% if (rows.length === 0) { %>
+          <p class="no-quotes-message">No quotes available at the moment.</p>
+          <% } else { %> <% for (let row of rows) { %>
+          <div class="quote-item">
+            <div class="quote-item-content">
+              <p class="quote-text"><%= row.quote %></p>
+              <a
+                class="authorLink quote-author"
+                href="#"
+                authorId="<%= row.authorId %>"
+              >
+                - <%= row.firstName %> <%= row.lastName %>
+              </a>
+            </div>
+            <div class="button-container">
+              <button
+                class="quote-edit"
+                onclick="location.href='/editQuote?quoteId=<%=row.quoteId%>'"
+              >
+                <img src="/images/editIcon.svg" alt="edit" />
+              </button>
+              <button
+                class="quote-edit"
+                onclick="deleteQuote('<%= row.quoteId %>')"
+              >
+                <img src="/images/closeIcon.svg" alt="delete" />
+              </button>
+            </div>
+          </div>
+          <% } %> <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal -->
+    <div
+      class="modal fade"
+      id="authorModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="authorName"></h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="authorInfo">
+              <img id="authorImage" />
+              <p id="dob" class="authorInfo_p"></p>
+              <p id="dod" class="authorInfo_p"></p>
+              <p id="profession" class="authorInfo_p"></p>
+              <p id="country" class="authorInfo_p"></p>
+              <p id="biography" class="authorInfo_p"></p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+    <script src="/js/quoteList.js"></script>
+  </body>
+</html>

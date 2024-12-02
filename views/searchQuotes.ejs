@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("partials/head.ejs") %>
+    <link href="/css/quotes.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="main-container">
+      <%- include("partials/sidebar.ejs") %>
+      <div class="quotes-layout">
+        <h1 class="title">Quote Search</h1>
+        <div class="search-wrapper">
+          <form id="keywordForm" action="/searchByKeyword" class="search-form">
+            <label class="search_label">
+              Keyword:
+              <input type="text" name="keyword" id="keyword_input" />
+            </label>
+            <p id="error-message" class="error">
+              Keyword must be at least 3 characters long.
+            </p>
+            <button>search</button>
+          </form>
+          <form action="/searchByAuthor" class="search-form">
+            <label class="search_label">
+              Author:
+              <select name="author">
+                <% for (let author of authors) {%>
+                <option value="<%= author.authorId %>">
+                  <%= author.firstName %> <%= author.lastName %>
+                </option>
+                <% } %>
+              </select>
+            </label>
+            <button>search</button>
+          </form>
+          <form action="/searchByCategory" class="search-form">
+            <label class="search_label">
+              Category:
+              <select name="category">
+                <% for (let c of category) {%>
+                <option value="<%= c.category %>"><%= c.category %></option>
+                <% } %>
+              </select>
+            </label>
+            <button>search</button>
+          </form>
+          <form action="/searchByLikes" class="search-form">
+            <label class="search_label">
+              Search by Likes:
+              <div class="number-wrapper">
+                <input type="number" name="min" placeholder="min" required />
+                <input type="number" name="max" placeholder="max" required />
+              </div>
+            </label>
+            <button>search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+    <script src="/js/searchQuotes.js"></script>
+  </body>
+</html>
